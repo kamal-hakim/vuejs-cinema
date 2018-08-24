@@ -32,8 +32,8 @@ new Vue({
                             </div>
                         </div>`,
             methods: {
-                checkFilter: function() {
-                    console.log("checked!");
+                checkFilter: function(category, title, checked) {
+                    this.$emit('check-filter', category, title, checked);
                 }
             },
             components: {
@@ -51,7 +51,7 @@ new Vue({
                     methods: {
                         checkFilter: function() {
                             this.checked = !this.checked;
-                            this.$emit('check-filter')
+                            this.$emit('check-filter', 'genre', this.title, this.checked)
                         }
                     }
                 }
