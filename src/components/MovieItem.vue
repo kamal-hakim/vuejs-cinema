@@ -24,9 +24,12 @@ export default {
             return this.$moment(raw).format('h:mm A');
         },
         filteredSessions: function(sessions){
-            var vm = this;
-            return sessions.filter(function(session) {
-                return vm.$moment(session.time).isSame(vm.day, 'day');
+            // var vm = this;
+            // return sessions.filter(function(session) {
+            //     return vm.$moment(session.time).isSame(vm.day, 'day');
+            // });
+            return sessions.filter(session => {
+                return this.$moment(session.time).isSame(this.day, 'day');
             });
         }
     }
