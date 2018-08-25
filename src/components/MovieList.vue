@@ -1,7 +1,14 @@
 <template>
     <div id="movie-list">
-        <movie-item v-for="(movie, index) in filteredMovies" v-bind:key="filteredMovies[index]" :movie="movie.movie">
-        </movie-item>
+        <div v-if="filteredMovies.length">
+            <movie-item v-for="(movie, index) in filteredMovies" v-bind:key="filteredMovies[index]" :movie="movie.movie"></movie-item>
+        </div>
+        <div v-else-if="movies.length">
+            No movies found
+        </div>
+        <div v-else>
+            Loading...
+        </div>
     </div>
 </template>
 
