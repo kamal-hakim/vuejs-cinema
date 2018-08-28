@@ -1,40 +1,33 @@
 <template>
     <div class="movie">
         <div class="movie-col-left">
-            <img :src="movie.Poster" alt="">
+            <img v-bind:src="movie.Poster">
         </div>
         <div class="movie-col-right">
             <div class="movie-title">
-                <h2>{{movie.Title}}</h2>
-                <span class="movie-rating">{{movie.Rated}}</span>
+                <h2>{{ movie.Title }}</h2>
+                <span class="movie-rating">{{ movie.Rated }}</span>
             </div>
             <div class="movie-sessions">
-                <div v-for="(session, index) in filteredSessions(sessions)" :key="index" class="session-time-wrapper">
-                    <div class="session-time">{{ formatSessionTime(session.time)}}</div>
+                <div v-for="session in filteredSessions(sessions)" class="session-time-wrapper">
+                    <div class="session-time">{{ formatSessionTime(session.time) }}</div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-export default {
-    props: ['movie', 'sessions', 'day'],
-    methods: {
-        formatSessionTime(raw) {
-            return this.$moment(raw).format('h:mm A');
-        },
-        filteredSessions: function(sessions){
-            // var vm = this;
-            // return sessions.filter(function(session) {
-            //     return vm.$moment(session.time).isSame(vm.day, 'day');
-            // });
-            return sessions.filter(session => {
-                return this.$moment(session.time).isSame(this.day, 'day');
-            });
+    export default {
+        props: [ 'movie', 'sessions', 'day' ],
+        methods: {
+            formatSessionTime(raw) {
+                return this.$moment(raw).format('h:mm A');
+            },
+            filteredSessions(sessions) {
+                return sessions.filter(session => {
+                    return this.$moment(session.time).isSame(this.day, 'day');
+                })
+            }
         }
     }
-}
 </script>
-<style>
-
-</style>

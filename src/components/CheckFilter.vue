@@ -4,23 +4,19 @@
         <span class="check-filter-title">{{ title }}</span>
     </div>
 </template>
-
 <script>
-export default {
-    data: function() {
-        return {
-            checked: false
-        };
-    },
-    props: [ 'title' ],
-    methods: {
-        checkFilter: function() {
-            this.checked = !this.checked;
-            this.$emit('check-filter', 'genre', this.title, this.checked)
+    export default {
+        data() {
+            return {
+                checked: false
+            }
+        },
+        props: [ 'title', 'category' ],
+        methods: {
+            checkFilter() {
+                this.checked = !this.checked;
+                this.$emit('check-filter', this.category, this.title, this.checked);
+            }
         }
     }
-}
 </script>
-<style>
-
-</style>
