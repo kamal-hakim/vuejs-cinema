@@ -23,8 +23,11 @@
                 times
             };
         },
+<<<<<<< HEAD
         methods: {
         },
+=======
+>>>>>>> 83637794570b6d749fc827c7a5ba418612427e0d
         components: {
             CheckFilter
         }
